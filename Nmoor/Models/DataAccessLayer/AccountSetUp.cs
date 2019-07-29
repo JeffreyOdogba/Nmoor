@@ -20,10 +20,10 @@ namespace Nmoor.Models.DataAccessLayer
                     password = Security.Hash(signUp.ConfirmPassword),
                     balance = signUp.Balance,
                     status = "Active",
-                    token = signUp.Token,
+                    token = Token.TokenGenerator(),
                     email = signUp.Email,
                     signupdate = signUp.SignUpDate,
-                    recentsignin = DateTime.Now,
+                    recentsignin = signUp.SignUpDate,
                     fullname = signUp.FullName
                 };
                 db.User.Add(user);

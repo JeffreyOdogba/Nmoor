@@ -22,8 +22,12 @@ namespace Nmoor.Controllers
         [HttpPost]
         public ActionResult Nmoor(UserSignUpVM user)
         {
-            account = new AccountSetUp();
-            account.RegisterUser(user);
+            if (ModelState.IsValid)
+            {
+                account = new AccountSetUp();
+                account.RegisterUser(user);
+            }
+
             return View();
         }
     }

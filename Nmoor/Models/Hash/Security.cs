@@ -21,5 +21,6 @@ namespace Nmoor.Models.Hash
         {
             return BCrypt.Net.BCrypt.Verify(password, correctHash);
         }
+
     }
 }

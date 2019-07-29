@@ -27,19 +27,7 @@ namespace Nmoor.Models.ViewModels
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
-        private string token;
-        public string Token
-        {
-            get
-            {
-                return token;
-            }
-
-            set
-            {
-                token = TokenGenerator();
-            }
-        }
+        public string token { get; set; }
 
         private DateTime signupdate { get; set; }
         public DateTime SignUpDate
@@ -71,6 +59,11 @@ namespace Nmoor.Models.ViewModels
         public string Status { get; set; }
         public string Email { get; set; }
 
+        public UserSignUpVM()
+        {
+
+        }
+
         public UserSignUpVM(string fn, string user, string pass, string tok, DateTime signdate, decimal bal, string stat, string email)
         {
             FullName = fn;
@@ -83,22 +76,6 @@ namespace Nmoor.Models.ViewModels
             Email = email;
         }
 
-        public static string TokenGenerator()
-        {
-            int size = 15;
-            var charSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-            var chars = charSet.ToCharArray();
-            var data = new byte[1];
-            var crypto = new RNGCryptoServiceProvider();
-            crypto.GetNonZeroBytes(data);
-            data = new byte[size];
-            crypto.GetNonZeroBytes(data);
-            var result = new StringBuilder(size);
-            foreach (var b in data)
-            {
-                result.Append(chars[b % (chars.Length)]);
-            }
-            return result.ToString();
-        }
+        
     }
 }

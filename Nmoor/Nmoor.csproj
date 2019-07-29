@@ -145,6 +145,7 @@
     <Compile Include="Models\DbContext\Transfers.cs" />
     <Compile Include="Models\DbContext\User.cs" />
     <Compile Include="Models\Hash\Security.cs" />
+    <Compile Include="Models\Hash\Token.cs" />
     <Compile Include="Models\ViewModels\UserSignUpVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
