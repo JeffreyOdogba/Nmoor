@@ -14,13 +14,13 @@ namespace Nmoor.Controllers
         AccountSetUp account;
         // GET: Home
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Nmoor()
         {
             return View();
         }
-
+        
         [HttpPost]
-        public ActionResult Index(UserSignUpVM user)
+        public ActionResult Nmoor(UserSignUpVM user)
         {
             account = new AccountSetUp();
             account.RegisterUser(user);
