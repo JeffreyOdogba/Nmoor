@@ -16,7 +16,7 @@ namespace Nmoor
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Nmoor", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Signup", id = UrlParameter.Optional }
             );
         }
     }

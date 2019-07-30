@@ -10,8 +10,9 @@ namespace Nmoor.Models.DataAccessLayer
 {
     public class AccountSetUp
     {
-        public void RegisterUser(UserSignUpVM signUp)
+        public bool RegisterUser(UserSignUpVM signUp)
         {
+            bool flag = false;
             using (NmoorEntity db = new NmoorEntity())
             {
                 User user = new User()
@@ -26,10 +27,42 @@ namespace Nmoor.Models.DataAccessLayer
                     recentsignin = signUp.SignUpDate,
                     fullname = signUp.FullName
                 };
-                db.User.Add(user);
-                db.SaveChanges();
+
+                if (!(db.User.Any(u => u.username.Equals(user.username) || u.fullname.Equals(user.fullname) || u.email.Equals(user.email))))
+                {
+                    flag = true;
+                    db.User.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    flag = false;
+                }
+                return flag;
+               
             }
 
+        }
+
+        public bool LoginUser(LoginViewModel login)
+        {
+            bool flag = false;
+            using (NmoorEntity db = new NmoorEntity())
+            {
+                var checkLoginValue = db.User.Where(u => u.username.Equals(login.Username)).FirstOrDefault();
+                if (checkLoginValue !=null)
+                {
+                    if (Security.VerifyPassword(login.Password, checkLoginValue.password))
+                    {
+                        flag = true;
+                    }                    
+                }
+                else
+                {
+                    flag = false;
+                }
+                return flag;
+            }
         }
     }
 }

@@ -14,21 +14,64 @@ namespace Nmoor.Controllers
         AccountSetUp account;
         // GET: Home
         [HttpGet]
-        public ActionResult Nmoor()
+        public ActionResult Signup()
         {
             return View();
         }
-        
+
         [HttpPost]
-        public ActionResult Nmoor(UserSignUpVM user)
+        public ActionResult Signup(UserSignUpVM user)
         {
             if (ModelState.IsValid)
             {
                 account = new AccountSetUp();
-                account.RegisterUser(user);
+                if (account.RegisterUser(user))
+                {
+                    ModelState.Clear();
+                    ViewBag.Msg = "🥳 Account created try logging in. Happy Transactions!!!";
+                }
+                else
+                {
+                    ModelState.Clear();
+                    ViewBag.Msg = "😢 Sorry account already available";
+                }
+
             }
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                account = new AccountSetUp();
+                if (account.LoginUser(login))
+                {
+                    Session["username"] = login.Username;
+                    RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ModelState.Clear();
+                    ViewBag.error = "😮 Something is wrong Email or Password?";
+                }
+            }
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Signup");
+        }
+             
     }
 }
