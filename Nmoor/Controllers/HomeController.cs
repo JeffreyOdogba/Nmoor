@@ -12,6 +12,12 @@ namespace Nmoor.Controllers
     public class HomeController : Controller
     {
         AccountSetUp account;
+        [HttpGet]
+        public ActionResult Nmoor()
+        {
+            return View();
+        }
+
         // GET: Home
         [HttpGet]
         public ActionResult Signup()
@@ -33,7 +39,7 @@ namespace Nmoor.Controllers
                 else
                 {
                     ModelState.Clear();
-                    ViewBag.Msg = "😢 Sorry account already available";
+                    ViewBag.Msg = "😢 Sorry account unavailable";
                 }
 
             }
