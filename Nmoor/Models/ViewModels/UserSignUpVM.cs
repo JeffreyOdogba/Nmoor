@@ -18,11 +18,9 @@ namespace Nmoor.Models.ViewModels
         [Display(Name = "Username")]
         public string Username { get; set; }
         [Required]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [Display(Name = "Password")]
         public string Password { get; set; }
         [Required]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [Display(Name = "Confirm Password")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
@@ -52,7 +50,7 @@ namespace Nmoor.Models.ViewModels
 
             set
             {
-                balance += 0;
+                balance += 0.00m;
             }
 
         }
