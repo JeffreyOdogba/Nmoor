@@ -18,6 +18,12 @@ namespace Nmoor
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Signup", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Dashboard",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Dashboard", action = "Main", id = UrlParameter.Optional }
+            );
         }
     }
 }

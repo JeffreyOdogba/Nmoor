@@ -62,7 +62,7 @@ namespace Nmoor.Controllers
                 if (account.LoginUser(login))
                 {
                     Session["username"] = login.Username;
-                    RedirectToAction("Main","Dashboard");
+                  return RedirectToAction("Main", "Dashboard");
                 }
                 else
                 {

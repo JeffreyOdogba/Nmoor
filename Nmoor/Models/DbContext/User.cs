@@ -19,7 +19,7 @@ namespace Nmoor.Models.DbContext
         [StringLength(50)]
         public string username { get; set; }
 
-        [StringLength(50)]
+        [StringLength(255)]
         public string password { get; set; }
 
         public decimal? balance { get; set; }

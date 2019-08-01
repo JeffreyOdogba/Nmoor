@@ -31,7 +31,7 @@ namespace Nmoor.Models.DataAccessLayer
                         recentsignin = signUp.SignUpDate,
                         fullname = signUp.FullName
                     };
-                    var aUser = db.User.Any(u => u.username.Equals(user.username) || u.fullname.Equals(user.fullname) || u.email.Equals(user.email));
+                    var aUser = db.User.Any(u => u.username.Equals(user.username) && u.email.Equals(user.email));
                     if (aUser)
                     {
                         flag = false;
