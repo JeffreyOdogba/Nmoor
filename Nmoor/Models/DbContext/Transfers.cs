@@ -9,7 +9,7 @@ namespace Nmoor.Models.DbContext
     public partial class Transfers
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int transferID { get; set; }
 
         [StringLength(50)]

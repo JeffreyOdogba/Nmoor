@@ -10,7 +10,7 @@ namespace Nmoor.Models.DbContext
     public partial class Transaction
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int transcationId { get; set; }
 
         [StringLength(50)]

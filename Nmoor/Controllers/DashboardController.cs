@@ -31,12 +31,12 @@ namespace Nmoor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Main(DepositViewModel deposit)
+        public ActionResult Deposit(DepositViewModel deposit)
         {            
             deposit.Username = Session["username"].ToString();
             Banking.Deposit(deposit);
             
-            return View();
+            return RedirectToAction("Main");
         }
     }
 }
