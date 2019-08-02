@@ -9,6 +9,7 @@
 }
 
 <h2>Dashboard</h2>
+@TempData["Msg"]
 @foreach (var item in Model)
 {
 
@@ -24,8 +25,18 @@
 }
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositModel">
     Deposit
 </button>
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawModel">
+    Withdraw
+</button>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModel">
+    Transfer
+</button>
+
 @Html.Partial("~/Views/Shared/Deposit.cshtml")
+@Html.Partial("~/Views/Shared/Withdraw.cshtml")
+@Html.Partial("~/Views/Shared/Transfer.cshtml")

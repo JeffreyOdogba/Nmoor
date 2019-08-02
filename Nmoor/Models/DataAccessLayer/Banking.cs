@@ -48,7 +48,7 @@ namespace Nmoor.Models.DataAccessLayer
             using (NmoorEntity db = new NmoorEntity())
             {
                 var amount = db.User.Where(u => u.username.Equals(withdraw.Username)).FirstOrDefault();
-                if (withdraw.Amount >= amount.balance)
+                if (withdraw.Amount > amount.balance)
                 {
                     flag = false;
                 }
@@ -84,7 +84,7 @@ namespace Nmoor.Models.DataAccessLayer
                 if (getToken != null)
                 {
                     var amount = transfer.Amount + 1.99m;
-                    if (amount > 0)
+                    if (amount <= getSenderUser.balance)
                     {
                         flag = true;
                         getSenderUser.balance -= amount;

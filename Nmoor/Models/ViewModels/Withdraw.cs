@@ -22,12 +22,12 @@ namespace Nmoor.Models.ViewModels
         [Required]
         [Display(Name = "Transit number")]
         [RegularExpression(@"/ ^[0 - 9]{5}$/", ErrorMessage = "😢 Expiry Date should be like on your card")]
-        public DateTime TransitNumber { get; set; }
+        public string TransitNumber { get; set; }
 
         [Required]
         [MaxLength(3)]
         [Display(Name = "Institution number")]
         [RegularExpression("/^[0-9]{3}$/", ErrorMessage = "😢 3 Numbers only")]
-        public int InstitutionNumber { get; set; }
+        public string InstitutionNumber { get; set; }
     }
 }

@@ -148,7 +148,6 @@
     <Compile Include="Models\DbContext\User.cs" />
     <Compile Include="Models\Hash\Security.cs" />
     <Compile Include="Models\Hash\Token.cs" />
-    <Compile Include="Models\ToPage.cs" />
     <Compile Include="Models\ViewModels\DepositViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\ReceiveTransferViewModel.cs" />
@@ -169,6 +168,8 @@
     <Content Include="Views\Home\Nmoor.cshtml" />
     <Content Include="Views\Shared\Deposit.cshtml" />
     <Content Include="Views\Dashboard\Main.cshtml" />
+    <Content Include="Views\Shared\Withdraw.cshtml" />
+    <Content Include="Views\Shared\Transfer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

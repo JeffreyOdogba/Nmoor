@@ -1,10 +1,10 @@
 ﻿
 <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="depositModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
+                    <h2 class="modal-title" id="exampleModalLabel"><b>Deposit</b></h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="inputCity">Expiry date</label>
                                 <input type="text" class="form-control" name="ExpiryDate" id="inputCity" placeholder="MM/YY">
                             </div>                           
@@ -31,7 +31,11 @@
                                 <input type="text" class="form-control" name="CVV" id="inputZip" placeholder="CVV">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add funds</button>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Add funds</button>
+                                </div>
+                            </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
