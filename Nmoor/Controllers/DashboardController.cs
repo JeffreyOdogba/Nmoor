@@ -1,4 +1,6 @@
-﻿using Nmoor.Models.DbContext;
+﻿using Nmoor.Models.DataAccessLayer;
+using Nmoor.Models.DbContext;
+using Nmoor.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +12,31 @@ namespace Nmoor.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        [HttpGet]
         public ActionResult Main()
-        {
-            return View();
-        }
-
-        public PartialViewResult AccountInfo()
         {
             using (NmoorEntity db = new NmoorEntity())
             {
-                var account = db.User.Where(u => u.username == Session["username"].ToString()).ToList();
-                //User user = new User();
-                //user.balance = account.balance;
-                //user.email = account.email;
-                //user.token = account.token;
-                //user.recentsignin = account.recentsignin;
-                //user.fullname = account.fullname;
+                    if (Session["username"] == null)
+                    {
+                        return View("~/Views/Home/Login.cshtml");
+                    }
 
-                return PartialView(account);
+                    var account = from u in db.User.ToList()
+                                  where u.username == Session["username"].ToString()
+                                  select u;
+
+                    return View(account);               
             }
+        }
+
+        [HttpPost]
+        public ActionResult Main(DepositViewModel deposit)
+        {            
+            deposit.Username = Session["username"].ToString();
+            Banking.Deposit(deposit);
             
+            return View();
         }
     }
 }

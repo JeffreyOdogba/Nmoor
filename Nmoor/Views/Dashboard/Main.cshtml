@@ -1,11 +1,31 @@
-﻿
-
+﻿@model IEnumerable<Nmoor.Models.DbContext.User>
 @{
     ViewBag.Title = "Main";
+
+    if (Session["username"] == null)
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Main</h2>
+<h2>Dashboard</h2>
+@foreach (var item in Model)
+{
 
-@{ 
-    Html.Partial("AccountInfo");
+    <div class="card" style="width: 45rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.fullname)</b><br /> @Html.DisplayFor(modelItem => item.fullname)</li>
+            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.email)</b><br /> @Html.DisplayFor(modelItem => item.email)</li>
+            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> @Html.DisplayFor(modelItem => item.balance)</li>
+            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.token)</b><br /> @Html.DisplayFor(modelItem => item.token)</li>
+            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.recentsignin)</b><br /> @Html.DisplayFor(modelItem => item.recentsignin)</li>
+        </ul>
+    </div>
 }
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Deposit
+</button>
+
+@Html.Partial("~/Views/Shared/Deposit.cshtml")

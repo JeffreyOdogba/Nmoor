@@ -1,0 +1,43 @@
+﻿
+<!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="Main" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Amount</label>
+                                <input type="text" class="form-control" name="Amount" id="inputEmail4" placeholder="Amount">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Card number</label>
+                                <input type="text" class="form-control" name="CardNumber" id="inputPassword4" placeholder="Card number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Expiry date</label>
+                                <input type="text" class="form-control" name="ExpiryDate" id="inputCity" placeholder="MM/YY">
+                            </div>                           
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">CVV</label>
+                                <input type="text" class="form-control" name="CVV" id="inputZip" placeholder="CVV">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add funds</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
