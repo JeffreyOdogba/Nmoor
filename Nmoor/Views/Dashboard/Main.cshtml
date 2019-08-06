@@ -8,34 +8,89 @@
     }
 }
 
-<h2>Dashboard</h2>
-@TempData["Msg"]
-@foreach (var item in Model)
-{
+@section css{
+    <style>
+        .myContainer {
+            display: inline-flex;
+        }
 
-    <div class="card" style="width: 45rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.fullname)</b><br /> @Html.DisplayFor(modelItem => item.fullname)</li>
-            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.email)</b><br /> @Html.DisplayFor(modelItem => item.email)</li>
-            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> $@Html.DisplayFor(modelItem => item.balance)</li>
-            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.token)</b><br /> @Html.DisplayFor(modelItem => item.token)</li>
-            <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.recentsignin)</b><br /> @Html.DisplayFor(modelItem => item.recentsignin)</li>
-        </ul>
-    </div>
+        .mychild {
+            height: 10%;
+            padding: 10px;
+            margin: auto;
+            margin-left: 5px;
+        }
+
+        .table {
+            width: 50%;
+            float: right;
+            margin-top: -325px;
+        }
+    </style>
 }
+<div class="container">
+    <h3>Hello, @Session["username"].ToString()</h3>
+    @TempData["Msg"]
+    @foreach (var item in Model)
+    {
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositModel">
-    Deposit
-</button>
+        <div class="card" style="width: 45rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.fullname)</b><br /> @Html.DisplayFor(modelItem => item.fullname)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.email)</b><br /> @Html.DisplayFor(modelItem => item.email)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> $@Html.DisplayFor(modelItem => item.balance) CAD</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.token)</b><br /> @Html.DisplayFor(modelItem => item.token)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.recentsignin)</b><br /> @Html.DisplayFor(modelItem => item.recentsignin)</li>
+            </ul>
+        </div>
+    }
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawModel">
-    Withdraw
-</button>
+    <div>
+        @foreach (var item in ViewBag.recent)
+        {
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModel">
-    Transfer
-</button>
+            <table class="table table-borderless table-hover">
+                <tr>
+                    <th>
+                        <h3>Recent activity</h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Transfer date</th>
+                    <th>Sender</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>@item.date</td>
+                    <td>@item.senderUsername</td>
+                    <td>@item.amount</td>
+                    <td>@item.status</td>
+                </tr>
+            </table>
+
+        }
+    </div>
+
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#depositModel">
+        Add money
+    </button>
+
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#withdrawModel">
+        Withdraw money
+    </button>
+
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#transferModel">
+        Transfer
+    </button>
+</div>
+
+
+
 
 @Html.Partial("~/Views/Shared/Deposit.cshtml")
 @Html.Partial("~/Views/Shared/Withdraw.cshtml")

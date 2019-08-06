@@ -170,6 +170,7 @@
     <Content Include="Views\Dashboard\Main.cshtml" />
     <Content Include="Views\Shared\Withdraw.cshtml" />
     <Content Include="Views\Shared\Transfer.cshtml" />
+    <Content Include="Views\Dashboard\ViewTransfer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

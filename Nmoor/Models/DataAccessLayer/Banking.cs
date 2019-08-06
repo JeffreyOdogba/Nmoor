@@ -106,21 +106,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
-        public static List<Invoice> ShowCurrentTransfar(string token)
-        {
-            //List<Invoice> invoices = new List<Invoice>();
-            using (NmoorEntity db = new NmoorEntity())
-            {
-                //var getUserToken = from u in db.Invoice
-                //                   where u.receiverUsername == token && u.status == "Pending"
-                //                   select u;
-                var getUserToken = db.Invoice.Where(u => u.receiverUsername == token && u.status.Contains("Pending"));
-                
-               return getUserToken.ToList();
-            }
-        }
-
-        public static bool ReceieveTransfer(int id, string user)
+        public static bool ReceieveTransfer(string username, int id)
         {
             bool flag = false;
 
@@ -128,21 +114,44 @@ namespace Nmoor.Models.DataAccessLayer
             {
                 flag = true;
                 var getAmount = db.Invoice.Find(id);
-                //.Select(u=>u.receiverUsername)
-                //.Union(db.User.Where(i => i.token == receive.receiverUsername)
-                //.Select(u => u.token)).FirstOrDefault();
 
                 if (getAmount.amount > 0)
                 {
-                    var addAmount = db.User.Where(u => u.username == user).FirstOrDefault();
-
+                    var addAmount = db.User.Where(u => u.username == username).FirstOrDefault();
                     addAmount.balance += getAmount.amount;
-
+                    getAmount.status = "Completed";
                     db.Entry(addAmount).State = EntityState.Modified;
                     db.SaveChanges();
                 }               
             }
             return flag;
+        }
+
+        public static List<Invoice> ShowCurrentTransfar(string username)
+        {
+            //List<Invoice> invoices = new List<Invoice>();
+            using (NmoorEntity db = new NmoorEntity())
+            {
+                var user = db.User.Where(u => u.username.Equals(username)).FirstOrDefault();
+                var getUserToken = from u in db.Invoice
+                                   where u.receiverUsername == user.token && u.status == "Pending"
+                                   select u;
+
+                return getUserToken.ToList();
+            }
+        }
+
+        public static List<Invoice> RecentActivity(string username)
+        {
+            using (NmoorEntity db = new NmoorEntity())
+            {
+                var user = db.User.Where(u => u.username.Equals(username)).FirstOrDefault();
+                var getUserToken = from u in db.Invoice
+                                   where u.status == "Completed"
+                                   select u;
+
+                return getUserToken.ToList();
+            }
         }
     }
 }

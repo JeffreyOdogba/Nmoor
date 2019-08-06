@@ -3,6 +3,7 @@ using Nmoor.Models.DbContext;
 using Nmoor.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -75,6 +76,15 @@ namespace Nmoor.Controllers
 
         public ActionResult Logout()
         {
+            using (NmoorEntity db = new NmoorEntity())
+            {
+                var userSession = Session["username"].ToString();
+               var user = db.User.Where(u => u.username == userSession).FirstOrDefault();
+                user.recentsignin = DateTime.Now;
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             Session.Abandon();
             return RedirectToAction("Signup");
         }

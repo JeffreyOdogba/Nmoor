@@ -27,8 +27,8 @@ namespace Nmoor.Models.DataAccessLayer
                         status = "Active",
                         token = Token.TokenGenerator(),
                         email = signUp.Email,
-                        signupdate = signUp.SignUpDate,
-                        recentsignin = signUp.SignUpDate,
+                        signupdate = DateTime.Now,
+                        recentsignin = DateTime.Now,
                         fullname = signUp.FullName
                     };
                     var aUser = db.User.Any(u => u.username.Equals(user.username) && u.email.Equals(user.email));

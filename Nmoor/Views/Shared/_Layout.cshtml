@@ -7,19 +7,20 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @RenderSection("css", false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                @Html.ActionLink("Nmoor", "Nmoor", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <b> @Html.ActionLink("Nmoor", "Nmoor", "Home", new { area = "" }, new { @class = "navbar-brand", style = "font-size: 25px" })</b>
             </div>
             @if (Session["username"] != null)
             {
-                <div class="navbar-header" style="color:white; padding:9px; margin-left:10px; float:right; font-weight:600;">
-                   Hi @Session["username"],
-                    @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-default" })
-                </div>
+        <div class="navbar-header" style="color:white; padding:9px; margin-left:10px; float:right; font-weight:600;">
+            @Html.ActionLink("🔔", "ViewTransfer", null, htmlAttributes: new { @class = "btn btn-primary mychild", alt="Alert" })
+            @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-default" })
+        </div>
             }
         </div>
     </div>

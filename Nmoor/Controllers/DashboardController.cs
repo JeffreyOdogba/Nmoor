@@ -16,17 +16,21 @@ namespace Nmoor.Controllers
         public ActionResult Main()
         {
             using (NmoorEntity db = new NmoorEntity())
-            {
+            {                
                     if (Session["username"] == null)
                     {
                         return View("~/Views/Home/Login.cshtml");
                     }
-
+                else
+                {
                     var account = from u in db.User.ToList()
                                   where u.username == Session["username"].ToString()
                                   select u;
-
-                    return View(account);               
+                    var userSession = Session["username"].ToString();
+                    var recent = Banking.RecentActivity(userSession);
+                    ViewBag.recent = recent;
+                    return View(account);
+                }                                
             }
         }
 
@@ -57,7 +61,7 @@ namespace Nmoor.Controllers
             return RedirectToAction("Main");
         }
 
-        public ActionResult SendTransfar(TransferViewModel transfer)
+        public ActionResult SendTransfer(TransferViewModel transfer)
         {
             transfer.SenderUsername = Session["username"].ToString();            
             if (Banking.SendTransfer(transfer))
@@ -66,6 +70,29 @@ namespace Nmoor.Controllers
                 return RedirectToAction("Main");
             }
             TempData["Msg"] = "😢 Sorry transaction failed *Click Back-arrow in brawers to Try-Again*.";
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult ViewTransfer()
+        {
+            if (Session["username"] == null)
+            {
+                return View("~/Views/Home/Login.cshtml");
+            }
+            var user = Session["username"].ToString();
+            var all = Banking.ShowCurrentTransfar(user);
+            return View(all);
+        }
+
+        public ActionResult Accept(int id)
+        {
+            var senderUsername = Session["username"].ToString();
+            if (Banking.ReceieveTransfer(senderUsername, id))
+            {
+                TempData["Msg"] = "😎 Money deposited to your account shortly...";
+                return RedirectToAction("Main");
+            }
+            TempData["Msg"] = "😢 Sorry transaction failed";
             return RedirectToAction("Main");
         }
     }
