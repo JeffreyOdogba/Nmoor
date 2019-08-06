@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Nmoor</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/fontawesome.min.css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/86b96ffcd3.js"></script>
     @RenderSection("css", false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <b> @Html.ActionLink("Nmoor", "Nmoor", "Home", new { area = "" }, new { @class = "navbar-brand", style = "font-size: 25px" })</b>
+                <b> @Html.ActionLink("Nmoor", "Main", "DashBoard", new { area = "" }, new { @class = "navbar-brand", style = "font-size: 25px" })</b>
             </div>
             @if (Session["username"] != null)
             {
-        <div class="navbar-header" style="color:white; padding:9px; margin-left:10px; float:right; font-weight:600;">
-            @Html.ActionLink("🔔", "ViewTransfer", null, htmlAttributes: new { @class = "btn btn-primary mychild", alt="Alert" })
-            @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-default" })
-        </div>
+                <div class="navbar-header" style="color:white; padding:9px; margin-left:10px; float:right; font-weight:600;">
+                    @{
+                        if (ViewBag.all == null)
+                        {
+                                        <button type="button" class="btn btn-primary mychild popovers" data-container="body" data-toggle="popover" data-placement="left" data-content="
+                          You have not ongoing transfer at the moment.">
+                                            🔔
+                                        </button>
+                        }
+                        else
+                        {
+
+                            @Html.ActionLink("🔔", "ViewTransfer", null, htmlAttributes: new { @class = "btn btn-primary mychild", alt = "Alert" })
+                        }
+                    }
+                    @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-default" })
+                </div>
             }
         </div>
     </div>
@@ -33,10 +49,21 @@
                 <p>&copy; @DateTime.Now.Year - Nmoor.Inc</p>
             </footer>
         </div>
-        
+
     </div>
 
+   
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $('.popovers').popover({
+                    container: 'body'
+                });
+            });
+        });
+
+    </script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
