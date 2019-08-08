@@ -141,13 +141,18 @@ namespace Nmoor.Models.DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Add user query for each user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static List<Invoice> RecentActivity(string username)
         {
             using (NmoorEntity db = new NmoorEntity())
             {
                 var user = db.User.Where(u => u.username.Equals(username)).FirstOrDefault();
                 var getUserToken = from u in db.Invoice
-                                   where u.status == "Completed"
+                                   where u.status == "Completed" && user.token == u.receiverUsername || u.senderUsername == user.username
                                    select u;
 
                 return getUserToken.ToList();

@@ -1,5 +1,6 @@
 ﻿using Nmoor.Models.DataAccessLayer;
 using Nmoor.Models.DbContext;
+using Nmoor.Models.Hash;
 using Nmoor.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,32 @@ namespace Nmoor.Controllers
             }
             return View();
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (NmoorEntity db = new NmoorEntity())
+                {
+                    var user = db.User.Where(u => u.email == model.Email).SingleOrDefault();
+                    if (user != null)
+                    {
+                        user.password = Security.Hash(model.ConfirmPassword);
+                        db.Entry(user).State = EntityState.Modified;
+                        db.SaveChanges();
+                        TempData["Worked"] = "Password Changed";
+                    }
+                }   
+                
+            }
+            return View();
+        }
+
 
         public ActionResult Logout()
         {
