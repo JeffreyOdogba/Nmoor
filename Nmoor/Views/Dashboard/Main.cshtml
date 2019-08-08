@@ -26,10 +26,12 @@
             float: right;
             margin-top: -355px;
         }
-        .table-borderless td, th{
-            padding:10px;
-        }
-         
+
+            .table-borderless td, th {
+                padding: 10px;
+            }
+
+
     </style>
 }
 <div class="container">
@@ -49,45 +51,45 @@
         </div>
     }
 
-<div>
-    <table class="table-borderless table-hover">
-        <tr>
-            <th>
-                <h3><i class="fas fa-money-check-alt"></i> Recent activity</h3>
-                <span style="font-size:small; color:gray; margin-top:0;"> Nmoor Activity</span>
-            </th>
-        </tr>
-        <tr>
-            <th>Transfer date</th>
-            <th>Sender</th>
-            <th>Amount</th>
-            <th>Status</th>
-        </tr>
-        @foreach (var item in ViewBag.recent)
-        {
+    <div>
+        <table class="table-borderless table-hover">
+            <tr>
+                <th>
+                    <h3><i class="fas fa-money-check-alt"></i> Recent activity</h3>
+                    <span style="font-size:small; color:gray; margin-top:0;"> Nmoor Activity</span>
+                </th>
+            </tr>
+            <tr>
+                <th>Transfer date</th>
+                <th>Sender</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var item in ViewBag.recent)
+            {
 
 
+                <tr>
+                    <td>
+                        @item.date
+                    </td>
+                    <td>
+                        @item.senderUsername
+                    </td>
+                    <td>
+                        @item.amount
+                    </td>
+                    <td>
+                        @item.status
+                    </td>
+                </tr>
+            }
             <tr>
                 <td>
-                    @item.date
-                </td>
-                <td>
-                    @item.senderUsername
-                </td>
-                <td>
-                    @item.amount
-                </td>
-                <td>
-                    @item.status
+                    <b>View More</b>
                 </td>
             </tr>
-        }
-        <tr>
-            <td>
-                <b>View More</b>
-            </td>
-        </tr>
-    </table>
+        </table>
     </div>
 
 
@@ -114,3 +116,19 @@
 @Html.Partial("~/Views/Shared/Deposit.cshtml")
 @Html.Partial("~/Views/Shared/Withdraw.cshtml")
 @Html.Partial("~/Views/Shared/Transfer.cshtml")
+
+
+@section Scripts{
+    <script>
+ $(document).ready(function () {
+
+     @*var all = '@ViewBag.all';
+     if (all.valueOf() == null) {
+                 $(".notif-b").css("display", "inline-block");
+        } else {
+                 $(".notif-a").css("display", "inline-block");
+            }
+    });*@
+    </script>
+
+}

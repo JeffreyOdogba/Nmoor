@@ -81,7 +81,7 @@ namespace Nmoor.Controllers
             }
             var user = Session["username"].ToString();
             var all = Banking.ShowCurrentTransfar(user);
-            ViewBag.all = all;
+            ViewData["all"] = all;
             return View(all);
         }
 
