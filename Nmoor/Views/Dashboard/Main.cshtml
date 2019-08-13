@@ -1,11 +1,149 @@
-﻿
-
+﻿@model IEnumerable<Nmoor.Models.DbContext.User>
 @{
     ViewBag.Title = "Main";
+
+    if (Session["username"] == null)
+    {
+        Response.Redirect("~/Home/Login");
+    }
 }
 
-<h2>Main</h2>
+@section css{
+    <style>
+        .myContainer {
+            display: inline-flex;
+        }
 
-@{ 
-    Html.Partial("AccountInfo");
+        .mychild {
+            height: 10%;
+            padding: 10px;
+            margin: auto;
+            margin-left: 5px;
+        }
+
+        .table-borderless {
+            width: 50%;
+            float: right;
+            margin-top: -355px;
+        }
+
+            .table-borderless td, th {
+                padding: 10px;
+            }
+
+        .my{
+            width: 50%;
+            float:right;
+            border: 1px solid lightgrey;
+            background-color: lightgrey;
+            border-radius:5px;
+            margin-top:auto;
+            margin-top:-70px;
+        }
+        .my .card-body{
+            padding:10px;
+        }
+    </style>
+}
+<div class="container">
+    <h3>Hello, @Session["username"].ToString()</h3>
+    @TempData["Msg"]
+    @foreach (var item in Model)
+    {
+
+        <div class="card" style="width: 45rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.fullname)</b><br /> @Html.DisplayFor(modelItem => item.fullname)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.email)</b><br /> @Html.DisplayFor(modelItem => item.email)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> <span style="font-size:24px;">$@Html.DisplayFor(modelItem => item.balance) CAD*</span> </li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.token)</b><br /> @Html.DisplayFor(modelItem => item.token)</li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.recentsignin)</b><br /> @Html.DisplayFor(modelItem => item.recentsignin)</li>
+            </ul>
+        </div>
+    }
+
+    <div>
+        <table class="table-borderless table-hover">
+            <tr>
+                <th>
+                    <h3><i class="fas fa-money-check-alt"></i> Recent activity</h3>
+                    <span style="font-size:small; color:gray; margin-top:0;"> Nmoor Activity</span>
+                </th>
+            </tr>
+            <tr>
+                <th>Transfer date</th>
+                <th>Sender</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var item in ViewBag.recent)
+            {
+
+
+                <tr>
+                    <td>
+                        @item.date
+                    </td>
+                    <td>
+                        @item.senderUsername
+                    </td>
+                    <td>
+                        @item.amount
+                    </td>
+                    <td>
+                        @item.status
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <b>View More</b>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#depositModel">
+        Add money
+    </button>
+
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#withdrawModel">
+        Withdraw money
+    </button>
+
+    <button type="button" class="btn btn-primary mychild" data-toggle="modal" data-target="#transferModel">
+        Transfer
+    </button>
+    <div class="direct">
+        @Html.Partial("~/Views/Shared/FeedBack.cshtml")
+    </div>
+
+</div>
+
+
+
+
+@Html.Partial("~/Views/Shared/Deposit.cshtml")
+@Html.Partial("~/Views/Shared/Withdraw.cshtml")
+@Html.Partial("~/Views/Shared/Transfer.cshtml")
+
+
+@section Scripts{
+    <script>
+ $(document).ready(function () {
+
+     @*var all = '@ViewBag.all';
+     if (all.valueOf() == null) {
+                 $(".notif-b").css("display", "inline-block");
+        } else {
+                 $(".notif-a").css("display", "inline-block");
+            }
+    });*@
+    </script>
+
 }
