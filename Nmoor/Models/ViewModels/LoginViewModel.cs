@@ -9,11 +9,12 @@ namespace Nmoor.Models.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name ="Username")]
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         public LoginViewModel()

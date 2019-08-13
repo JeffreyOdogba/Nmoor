@@ -45,15 +45,13 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 
     <script>
-        //$(document).ready(function () {
-        //    $(function () {
-        //        $('.popovers').popover({
-        //            container: 'body'
-        //        });
-        //    });
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 2000
+            });
 
         
-        //});
+        });
 
     </script>
     @RenderSection("Scripts", false)

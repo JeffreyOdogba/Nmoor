@@ -9,43 +9,47 @@
     }
 }
 
-<h2>Your Transfers</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.senderUsername)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th></th>
-    </tr>
+    <div class="container">
+        <h3><i class="fas fa-file-invoice-dollar"></i> Current Transfers</h3>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.senderUsername)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.senderUsername)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.ActionLink("Accept", "Accept", new { id=item.invoiceId }) 
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.senderUsername)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Accept", "Accept", new { id = item.invoiceId })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+
+    </div>

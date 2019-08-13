@@ -4,44 +4,68 @@
 }
 
 <style>
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
-  width:100%;
-}
-/* Bottom left text */
-.text-block {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  border-radius:10px;
-  background-color: lightgray;
-  color: navy;
-  font-size:30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  opacity: 0.8;
-}
-.btn{
-    border-radius: 25px;
-    font-size: 15px;
-    font-size: 1.07142857rem;
-    line-height: 1.5;
-    background: #0070ba;
-    padding: 13px 30px 15px;
+    .container {
+        width:50;
+    }
+    /* Bottom left text */
+    .text-block {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        border-radius: 10px;
+        background-color: lightgray;
+        color: black;
+        font-size: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        opacity: 0.8;
+    }
 
-}
-.box{
+    .btn {
+        border-radius: 25px;
+        font-size: 15px;
+        font-size: 1.07142857rem;
+        line-height: 1.5;
+        background: #0070ba;
+        padding: 13px 30px 15px;
+    }
 
-}
+    img {
+        height: 10%;
+        width: 100%;
+    }
 
+    .fix {
+        font-size: 15px;
+        font-weight: 700;
+        width: 60%;
+    }
+
+    .my {
+        width: 50%;
+        border: 1px solid lightgrey;
+        background-color: lightgrey;
+        border-radius: 5px;        
+        margin:0 auto;
+    }
+    .center {
+    text-align:center;
+    font-size:40px;
+    }
+
+    .card p{
+        text-align:center;
+    }
+
+        .my .card-body {
+            padding: 10px;
+        }
 </style>
 
-<div class="container">
-    <img src="~/images/Homepage_img_1.jpg" style="max-width:100%; max-height: 10%;">
+<div class="container-fluid">
+    <img src="~/images/jj.jpg" />
     <div class="text-block">
-        <h1 style="font-size:46px">Nmoor Inc.</h1>
+        <h1 style="font-size:40px"><strong> Nmoor Inc. </strong> </h1>
         <p>
             Send money to your friends with ease!
         </p>
@@ -50,9 +74,35 @@
         </p>
         <p>
             <div>
-                <a id="btn"> Get Started Today</a>
+                @Html.ActionLink("Get Started Today", "Login", "Home", null, new { @class = "btn fix btn-primary" })
             </div>
         </p>
+        <p>
+            <span style="font-size:15px;">
+                <i class="fas fa-phone-alt"></i> <b> Sign up: +1-800-NMOR-PAID </b> &nbsp &nbsp
+                <i class="fas fa-phone-alt"></i> <b> Support: +1-800-235-HELP </b>
+            </span>
+        </p>
+        <p>
+            <i class="fab fa-cc-mastercard"></i> <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-amex"></i> <i class="fab fa-paypal"></i>
+        </p>
+    </div>
+   
+    <div class="container">
+        <br />
+        <br />
+        <br />
+            <div class="card my w-75">
+                <div class="card-body">
+                    <h4 class="card-title center"><strong> $1.99CAD/Tr </strong> </h4>
+                    <p>Per Transfer To Friends and Family</p>
+                    <p class="card-text">Start taking credit cards and PayPal. You can also get paid on eBay, send invoices online and take payments from mobile devices.</p>
+                    <hr style="width:80%;" />
+                </div>
+            </div>
+       
+       
 
     </div>
 </div>
+
