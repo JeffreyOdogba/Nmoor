@@ -113,7 +113,7 @@ namespace Nmoor.Controllers
                 db.SaveChanges();
             }
             Session.Abandon();
-            return RedirectToAction("Signup");
+            return RedirectToAction("Nmoor");
         }
              
     }
