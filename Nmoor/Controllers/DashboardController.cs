@@ -12,6 +12,10 @@ namespace Nmoor.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
+        /// <summary>
+        /// Main was used for display records for current user 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Main()
         {
@@ -42,6 +46,11 @@ namespace Nmoor.Controllers
             }
         }
 
+        /// <summary>
+        /// Deposit get the card information and amount to be added to user
+        /// </summary>
+        /// <param name="deposit"> gets all html input form</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Deposit(DepositViewModel deposit)
         {            
@@ -56,6 +65,12 @@ namespace Nmoor.Controllers
             return RedirectToAction("Main");
         }
 
+        /// <summary>
+        /// Withdraw substract balance from use
+        /// </summary>
+        /// <param name="withdraw">gets all html input form</param>
+        /// <returns></returns>
+
         [HttpPost]
         public ActionResult Withdraw(Withdraw withdraw)
         {
@@ -69,6 +84,11 @@ namespace Nmoor.Controllers
             return RedirectToAction("Main");
         }
 
+        /// <summary>
+        /// This sends money to another user using the secured token (with the method Banking.SenderUsername)
+        /// </summary>
+        /// <param name="transfer"></param>
+        /// <returns></returns>
         public ActionResult SendTransfer(TransferViewModel transfer)
         {
             transfer.SenderUsername = Session["username"].ToString();            
@@ -81,6 +101,10 @@ namespace Nmoor.Controllers
             return RedirectToAction("Main");
         }
 
+        /// <summary>
+        /// ViewTransfer view current transfer sent from other user
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ViewTransfer()
         {
             if (Session["username"] == null)
@@ -93,6 +117,11 @@ namespace Nmoor.Controllers
             return View(all);
         }
 
+        /// <summary>
+        /// the function is used when the user accept money from sender
+        /// </summary>
+        /// <param name="id">gets the id from the listed transers</param>
+        /// <returns></returns>
         public ActionResult Accept(int id)
         {
             var senderUsername = Session["username"].ToString();

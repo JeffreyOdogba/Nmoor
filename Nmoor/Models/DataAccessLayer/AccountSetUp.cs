@@ -11,6 +11,7 @@ namespace Nmoor.Models.DataAccessLayer
 {
     public class AccountSetUp
     {
+        //This accepts the input from controller and add new user
         public bool RegisterUser(UserSignUpVM signUp)
         {
             bool flag = false;
@@ -59,6 +60,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
+        // LoginUser check if user exist in the database
         public bool LoginUser(LoginViewModel login)
         {
             bool flag = false;

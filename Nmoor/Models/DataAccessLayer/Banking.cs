@@ -10,6 +10,7 @@ namespace Nmoor.Models.DataAccessLayer
 {
     public class Banking
     {
+        //Deposit adds money to current user state
         public static bool Deposit(DepositViewModel deposit)
         {
             bool flag = false;
@@ -41,6 +42,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
+        // Widthdraw takeout money from current balance
         public static bool WithDraw(Withdraw withdraw)
         {
             bool flag = false;
@@ -73,6 +75,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
+        //Sendtransfer sends money to other user
         public static bool SendTransfer(TransferViewModel transfer)
         {
             bool flag = false;
@@ -106,6 +109,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
+        // ReceieveTransfer accept money from user
         public static bool ReceieveTransfer(string username, int id)
         {
             bool flag = false;
@@ -127,6 +131,7 @@ namespace Nmoor.Models.DataAccessLayer
             return flag;
         }
 
+        //ShowCurrentTransfar get all recent transfers from db
         public static List<Invoice> ShowCurrentTransfar(string username)
         {
             //List<Invoice> invoices = new List<Invoice>();

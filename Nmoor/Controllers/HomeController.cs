@@ -14,19 +14,25 @@ namespace Nmoor.Controllers
     public class HomeController : Controller
     {
         AccountSetUp account;
+
+        /// <summary>
+        /// Nmoor is home view
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Nmoor()
         {
             return View();
         }
 
-        // GET: Home
+        // GET: Signup view
         [HttpGet]
         public ActionResult Signup()
         {
             return View();
         }
 
+        // Signup clicked and validate user
         [HttpPost]
         public ActionResult Signup(UserSignUpVM user)
         {
@@ -48,6 +54,7 @@ namespace Nmoor.Controllers
 
             return View();
         }
+
 
         [HttpGet]
         public ActionResult Login()
