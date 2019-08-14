@@ -15,6 +15,7 @@ namespace Nmoor.Controllers
         [HttpGet]
         public ActionResult Main()
         {
+           Service.ServiceClient service = new Service.ServiceClient();
             using (NmoorEntity db = new NmoorEntity())
             {                
                     if (Session["username"] == null)
@@ -25,9 +26,16 @@ namespace Nmoor.Controllers
                 {
                     var account = from u in db.User.ToList()
                                   where u.username == Session["username"].ToString()
-                                  select u;
+                                  select u;                    
                     var userSession = Session["username"].ToString();
                     var recent = Banking.RecentActivity(userSession);
+
+                    var user =  Session["username"].ToString();
+                    var amount = db.User.Where(u => u.username == user).SingleOrDefault();
+                    decimal n = amount.balance.Value;
+                    var converted = service.convertCurrency(n, "USD");
+                    ViewBag.converted = string.Format("{0:C}", converted) ;
+
                     ViewBag.recent = recent;
                     return View(account);
                 }                                

@@ -55,7 +55,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.fullname)</b><br /> @Html.DisplayFor(modelItem => item.fullname)</li>
                 <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.email)</b><br /> @Html.DisplayFor(modelItem => item.email)</li>
-                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> <span style="font-size:24px;">$@Html.DisplayFor(modelItem => item.balance) CAD*</span> </li>
+                <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.balance)</b><br /> <span style="font-size:24px;">$@Html.DisplayFor(modelItem => item.balance) CAD*</span> <br /> @ViewBag.converted USD* </li>
                 <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.token)</b><br /> @Html.DisplayFor(modelItem => item.token)</li>
                 <li class="list-group-item"><b>@Html.DisplayNameFor(model => model.recentsignin)</b><br /> @Html.DisplayFor(modelItem => item.recentsignin)</li>
             </ul>
@@ -88,7 +88,7 @@
                         @item.senderUsername
                     </td>
                     <td>
-                        @item.amount
+                       $@item.amount
                     </td>
                     <td>
                         @item.status
