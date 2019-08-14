@@ -55,13 +55,14 @@ namespace Nmoor.Controllers
             return View();
         }
 
-
+        // Login View
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        //Gets user input
         [HttpPost]
         public ActionResult Login(LoginViewModel login)
         {
@@ -82,10 +83,13 @@ namespace Nmoor.Controllers
             return View();
         }
 
+        //ForgotPassword View
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
+        //ForgotPassword is get user email and change password
         [HttpPost]
         public ActionResult ForgotPassword(ForgetPasswordViewModel model)
         {
@@ -107,7 +111,7 @@ namespace Nmoor.Controllers
             return View();
         }
 
-
+        //Kill current user Session
         public ActionResult Logout()
         {
             using (NmoorEntity db = new NmoorEntity())
